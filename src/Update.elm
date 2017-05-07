@@ -1,14 +1,26 @@
 module Update exposing (update, Msg(..))
 
-import Model
+import Model exposing (Model)
 
 
 type Msg
-    = NoOp
+    = Up
+    | Down
+    | Right
+    | Left
 
 
-update : Msg -> Model.Model -> ( Model.Model, Cmd c )
+update : Msg -> Model -> Model
 update msg model =
     case msg of
-        NoOp ->
-            model ! []
+        Up ->
+            { model | y = model.y + 30 }
+
+        Down ->
+            { model | y = model.y - 30 }
+
+        Right ->
+            { model | x = model.x + 30 }
+
+        Left ->
+            { model | x = model.x - 30 }

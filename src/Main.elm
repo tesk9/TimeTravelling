@@ -1,33 +1,15 @@
-module Main exposing (main)
+module Main exposing (..)
 
-import Html
-import Json.Decode exposing (Value, decodeString)
-import Flags exposing (decoder)
-import Model exposing (Model)
-import Update exposing (update)
-import View exposing (view)
+import Html exposing (beginnerProgram)
+import Model
+import Update
+import View
 
 
-main : Program String Model Update.Msg
+main : Program Never Model.Model Update.Msg
 main =
-    Html.programWithFlags
-        { init = init
-        , update = update
-        , subscriptions = subscriptions
-        , view = view
+    beginnerProgram
+        { model = Model.init
+        , update = Update.update
+        , view = View.view
         }
-
-
-init : String -> ( Model, Cmd msg )
-init pageData =
-    case decodeString decoder pageData of
-        Ok flags ->
-            Model.init flags ! []
-
-        Err err ->
-            Debug.crash err
-
-
-subscriptions : a -> Sub b
-subscriptions =
-    always Sub.none

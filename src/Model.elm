@@ -1,12 +1,12 @@
 module Model exposing (..)
 
-import Flags exposing (Flags)
-
 
 type alias Model =
-    {}
+    { x : Int
+    , y : Int
+    }
 
 
-init : Flags -> Model
-init flags =
-    {}
+init : Model
+init =
+    { x = 0, y = 0 }
